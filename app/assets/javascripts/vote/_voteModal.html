@@ -1,0 +1,35 @@
+
+<div class="modal-content">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="closeModal()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h4 class="modal-title">Vote</h4>
+  </div>
+
+    <div class="modal-body">
+      <div class="row">
+        <div class="col-xs-3" ng-click="select('banshee')">
+          <img id="banshee" src="images/terran/Banshee.jpg" alt="banshee">
+        </div>
+
+        <div class="col-xs-3" ng-click="select('battlecruiser')">
+          <img id="battlecruiser" src="images/terran/Battlecruiser.jpg" alt="battlecruiser">
+        </div>
+
+        <div class="col-xs-3" ng-click="select('ghost')">
+          <img id="ghost" src="images/terran/Ghost.jpg" alt="ghost">
+        </div>
+
+        <div class="col-xs-3" ng-click="select('hellion')">
+          <img id="hellion" src="images/terran/Hellion.jpg" alt="hellion">
+        </div>
+      </div>
+
+
+
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>
+      <button class="btn btn-primary" ng-click="decide()"> Decide </button>
+    </div>
+
+</div>

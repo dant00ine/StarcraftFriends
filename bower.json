@@ -1,0 +1,21 @@
+{
+  "name": "scii",
+  "description": "Join up with your friends to find out which SC2 character you remind everyone of most.",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.2",
+    "bootstrap": "^3.3.7",
+    "AngularDevise": "angular-devise#^1.3.0",
+    "angular-bootstrap": "^2.2.0"
+  }
+}

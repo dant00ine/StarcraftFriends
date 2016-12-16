@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  voter: one
+  votee: one
+  group: one
+  character: one
+
+two:
+  voter: two
+  votee: two
+  group: two
+  character: two

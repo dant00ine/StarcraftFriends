@@ -1,0 +1,24 @@
+<h3 class="page-header" ng-bind="group.name"></h3>
+<p ng-bind="group.description"></p>
+
+<table class="memberList table table-striped">
+  <tr ng-repeat="member in members">
+    <td>
+      <a ng-bind="member.name" href="#/profile/{{member.id}}"></a>
+      <span ng-bind="member.created_at"></span>
+      <button class="pull-right" ng-click="vote()" ng-show="voted(member.id)" ng-class="voted(member.id)">Vote</button>
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <form ng-submit="invite()">
+        <button type="submit"><span class="glyphicon glyphicon-plus-sign"></span></button>
+        <input ng-model="email" type="text" class="form-control" placeholder="Invite by email">
+      </form>
+    </td>
+  </tr>
+</table>
+
+<div class="groupInvite">
+
+</div>

@@ -1,0 +1,72 @@
+*{
+  color: white;
+}
+
+a{
+  color: #FFB000;
+}
+
+.groupIndex {
+  border: 1px solid #FFB000;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 25px 10px;
+}
+
+body{
+  background-color: #0C1424;
+}
+.modal-content{
+  background-image: url("/images/backgrounds/blue_overlay.jpg");
+}
+
+.modal-header{
+  /*color: #FFB000;*/
+  border-bottom: 1px solid #FFB000;
+}
+
+.modal-body{
+  border-bottom: 1px solid #ffB000;
+}
+
+.modal-footer{
+  border-top: 1px solid #FFB000;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td{
+  background-image: url("/images/backgrounds/bg1.jpg");
+}
+
+.modal-body img{
+  height: 100px;
+  width: 100px;
+}
+
+.modal-body img:hover{
+  outline: 1px inset #FFB000;
+}
+  .selected{
+    border: 5px inset #FFB000;
+  }
+
+.btn:focus{
+  outline: none;
+  color: white;
+}
+
+.btn-default {
+  height: 25px;
+  width: 195px;
+  border: none;
+  color: white;
+  line-height: 15px;
+  background-image: url("/images/buttons/button1.png");
+}
+.btn-default:hover{
+  color: white;
+}
+.btn-default:active {
+  color: white;
+  outline: none;
+  background-image: url("/images/buttons/button1Active.png");
+}
