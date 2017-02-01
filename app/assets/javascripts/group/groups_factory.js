@@ -1,5 +1,5 @@
 angular.module('scApp')
-  .factory('groups', [
+  .factory('groups_factory', [
     '$http',
     function($http){
       var o = {

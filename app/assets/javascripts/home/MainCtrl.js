@@ -3,15 +3,14 @@ angular.module('scApp')
     '$scope',
     'Auth',
     '$uibModal',
-    'groups',
-    function($scope, Auth, $uibModal, groups){
+    'groups_factory',
+    function($scope, Auth, $uibModal, groups_factory){
 
       Auth.currentUser().then(function(user){
         $scope.user = user
       })
 
-      $scope.groups = groups.groups
-      console.log($scope.groups);
+      $scope.groups = groups_factory.groups
 
       $scope.openModal = function(){
         var modalInstance = $uibModal.open({

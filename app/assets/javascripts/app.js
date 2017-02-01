@@ -3,7 +3,9 @@ angular.module('scApp', ['ui.router', 'templates', 'Devise', 'ui.bootstrap'])
   '$stateProvider',
   '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider){
+
     $stateProvider
+
       .state('home', {
         url: '/home',
         templateUrl: 'home/_home.html',
@@ -15,11 +17,12 @@ angular.module('scApp', ['ui.router', 'templates', 'Devise', 'ui.bootstrap'])
           })
         }],
         resolve: {
-          myGroups: ['groups', function(groups){
-            return groups.getAll()
+          myGroups: ['groups_factory', function(groups_factory){
+            return groups_factory.getAll()
           }]
         }
       })
+
       .state('group', {
         url: '/groups/:id',
         templateUrl: 'group/_groups.html',
@@ -32,11 +35,12 @@ angular.module('scApp', ['ui.router', 'templates', 'Devise', 'ui.bootstrap'])
           })
         }],
         resolve: {
-          thisGroup: ['groups', '$stateParams', function(groups, $stateParams){
-            return groups.getOne($stateParams.id)
+          thisGroup: ['groups_factory', '$stateParams', function(groups_factory, $stateParams){
+            return groups_factory.getOne($stateParams.id)
           }]
-        }
+      }
       })
+
       .state('profile', {
         url: '/profile/:id',
         templateUrl: 'profile/_profile.html',
@@ -54,6 +58,7 @@ angular.module('scApp', ['ui.router', 'templates', 'Devise', 'ui.bootstrap'])
           })
         }]
       })
+
       .state('login', {
         url: '/login',
         templateUrl: 'auth/_login.html',
@@ -66,6 +71,7 @@ angular.module('scApp', ['ui.router', 'templates', 'Devise', 'ui.bootstrap'])
           })
         }]
       })
+
       .state('register', {
         url: '/register',
         templateUrl: 'auth/_register.html',
@@ -78,6 +84,8 @@ angular.module('scApp', ['ui.router', 'templates', 'Devise', 'ui.bootstrap'])
           })
         }]
       })
+
     $urlRouterProvider.otherwise('login');
+
   }
 ])

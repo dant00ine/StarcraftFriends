@@ -2,9 +2,9 @@ angular.module('scApp')
   .controller('GroupModalCtrl', [
     '$scope',
     '$uibModalInstance',
-    'groups',
+    'groups_factory',
     'Auth',
-    function($scope, $uibModalInstance, groups, Auth){
+    function($scope, $uibModalInstance, groups_factory, Auth){
 
     Auth.currentUser().then(function(user){
       $scope.user = user
@@ -16,7 +16,7 @@ angular.module('scApp')
 
     $scope.newGroup = function(){
       if(!$scope.name || !$scope.description){ console.log("no body"); return }
-      groups.create({
+      groups_factory.create({
         name: $scope.name,
         description: $scope.description,
         user_id: $scope.user.id

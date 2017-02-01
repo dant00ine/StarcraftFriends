@@ -5,8 +5,8 @@
   <tr ng-repeat="member in members">
     <td>
       <a ng-bind="member.name" href="#/profile/{{member.id}}"></a>
-      <span ng-bind="member.created_at"></span>
-      <button class="pull-right" ng-click="vote()" ng-show="voted(member.id)" ng-class="voted(member.id)">Vote</button>
+      <!-- <span ng-bind="member.created_at"></span> -->
+      <button id="{{member.id}}" class="pull-right voteBtn" ng-click="vote(member.id)">Vote</button>
     </td>
   </tr>
   <tr>
@@ -18,6 +18,8 @@
     </td>
   </tr>
 </table>
+
+<button ng-click="updateVoteGraphics()">Pooooo</button>
 
 <div class="groupInvite">
 

@@ -5,7 +5,9 @@ Rails.application.routes.draw do
 
   post 'groups/:id/invite.json', to: 'groups#invite'
 
+  post '/votes/:id/vote.json', to: 'votes#create'
+
   devise_for :users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-  resources :groups, only: [:create, :index, :show, :update]
+  resources :groups, only: [:create, :index, :show, :update, :vote]
 end

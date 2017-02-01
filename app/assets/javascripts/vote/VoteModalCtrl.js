@@ -2,20 +2,53 @@ angular.module('scApp')
   .controller('VoteModalCtrl', [
     '$scope',
     '$uibModalInstance',
-    function($scope, $uibModalInstance){
+    'Auth',
+    'votes_factory',
+    'group', 'member', 'characterId',
+    function($scope, $uibModalInstance, Auth,
+        votes_factory, group, member, characterId){
 
       $scope.selected = ""
+      $scope.group = group
+      $scope.member = member
+
+      Auth.currentUser().then(function(user){
+        $scope.user = user
+      })
 
       $scope.select = function(selection){
-        var oldElement = document.getElementById($scope.selected)
-        angular.element(oldElement).attr("class", "")
-        $scope.selected = selection
-        var element = document.getElementById(selection)
-        angular.element(element).attr("class", "selected");
+          setTimeout(function(){
+              var oldElement = document.getElementById("char" + $scope.selected)
+              angular.element(oldElement).attr("class", "")
+              $scope.selected = selection
+              var charId = "char"+selection
+              var element = document.getElementById(charId)
+              angular.element(element).attr("class", "selected")
+          }, 0)
+      }
+
+      if(characterId){
+          $scope.$on('$viewContentLoaded', $scope.select(characterId))
       }
 
       $scope.decide = function(){
-        console.log("chose: ", $scope.selected);
+
+        var voteData = { vote: {
+            voter_id: $scope.user.id,
+            votee_id: $scope.member.id,
+            group_id: $scope.group.id,
+            character_id: $scope.selected
+          }
+        }
+
+        var res = votes_factory.create(voteData)
+        
+        if(res){
+            console.log("res");
+            console.log(res)
+            console.log(res.votee_id)
+        }
+
         $uibModalInstance.dismiss()
       }
 

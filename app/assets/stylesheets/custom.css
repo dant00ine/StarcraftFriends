@@ -13,6 +13,10 @@ a{
   margin: 25px 10px;
 }
 
+.memberList a{
+  line-height: 50px;
+}
+
 body{
   background-color: #0C1424;
 }
@@ -27,6 +31,7 @@ body{
 
 .modal-body{
   border-bottom: 1px solid #ffB000;
+  text-align: center;
 }
 
 .modal-footer{
@@ -62,11 +67,18 @@ body{
   line-height: 15px;
   background-image: url("/images/buttons/button1.png");
 }
-.btn-default:hover{
-  color: white;
-}
-.btn-default:active {
-  color: white;
-  outline: none;
-  background-image: url("/images/buttons/button1Active.png");
+
+  .btn-default:hover{
+    color: white;
+  }
+
+  .btn-default:active {
+    color: white;
+    outline: none;
+    background-image: url("/images/buttons/button1Active.png");
+  }
+
+.voteBtn {
+  width: 50px;
+  height: 50px;
 }

@@ -2,40 +2,79 @@ angular.module('scApp')
   .controller('GroupsCtrl', [
     '$state',
     '$scope',
-    'groups',
-    'thisGroup',
     '$uibModal',
-    function($state, $scope, groups, thisGroup, $uibModal){
+    'Auth',
+    'groups_factory',
+    'thisGroup',
+    function($state, $scope, $uibModal, Auth,
+        groups_factory, thisGroup){
+
       $scope.group = thisGroup.data.group
       $scope.members = thisGroup.data.members
       $scope.votes = thisGroup.data.votes
+      $scope.currentUser
+      $scope.selectedMember
+      $scope.votedChar
 
-      console.log($scope.votes)
+      Auth.currentUser().then(function(user){
+          $scope.currentUser = user
+          console.log($scope.currentUser)
+      })
 
-      console.log($scope.members);
 
-      $scope.voted = function(id){
-        for(i in $scope.votes){
-          if($scope.votes[i].votee_id == id)
-            return false
-        }
-        return true
+      function updateVoteGraphics(id){
+          setTimeout(function(){
+              for(i in $scope.votes){
+                  var character_id = $scope.votes[i].character_id
+                  var url = `/images/terran/${character_id}.jpg`
+                  var votee_id = $scope.votes[i].votee_id.toString()
+                  var button = document.getElementById(votee_id)
+                  button.style.backgroundImage = `url(${url})`
+                  button.style.backgroundSize = `cover`
+                  button.innerHTML = ""
+              }
+              return true
+          }, 0)
       }
+
+      $scope.$on('$viewContentLoaded', updateVoteGraphics)
 
       $scope.invite = function(){
         var invParams = {invite: {email: $scope.email}}
-        groups.inviteMember($scope.group.id, invParams)
+        groups_factory.inviteMember($scope.group.id, invParams)
         $scope.email = ''
       }
 
-      $scope.vote = function(){
+      $scope.vote = function(id){
+        for(var i = 0; i < $scope.members.length; i++){
+            if($scope.members[i].id == id){
+                $scope.selectedMember = $scope.members[i]
+            }
+        }
+
+        $scope.votedChar = $scope.votes.filter(function(item){
+            return item.votee_id == $scope.selectedMember.id &&
+            item.voter_id == $scope.currentUser.id
+        })
+
         var modalInstance = $uibModal.open({
           templateUrl: "vote/_voteModal.html",
           controller: "VoteModalCtrl",
           ariaLabelledBy: "modal-title",
-          ariaDescribedBy: "modal-body"
+          ariaDescribedBy: "modal-body",
+          resolve: {
+            group: function(){
+              return $scope.group
+            },
+            member: function(){
+              return $scope.selectedMember
+            },
+            characterId: function(){
+                return $scope.votedChar[0] ? $scope.votedChar[0].id : null
+            }
+          }
         })
-      }
 
+      }
     }
   ])
