@@ -41,14 +41,11 @@ angular.module('scApp')
           }
         }
 
-        var res = votes_factory.create(voteData)
-        
-        if(res){
-            console.log("res");
-            console.log(res)
-            console.log(res.votee_id)
-        }
+        var res = votes_factory.create(voteData, function(response){
+            console.log("callback yoooooo");
+        })
 
+        $scope.group = "test"
         $uibModalInstance.dismiss()
       }
 

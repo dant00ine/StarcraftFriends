@@ -5,11 +5,16 @@ angular.module('scApp')
     var o = {
       groups: []
     }
-    o.create = function(voteData){
-      $http.post(`/votes/${voteData.vote.group_id}/vote.json`, voteData).then(function(res){
-          console.log(res);
-        return res.data
-    }).catch( (error) => { console.log(error) })
+    o.create = function(voteData, callback){
+       $http.post(`/votes/${voteData.vote.group_id}/vote.json`, voteData).then(function(res){
+           callback(res.data)
+      }).catch( (error) => { console.log(error) })
+    }
+
+    o.get = function(id, callback){
+        $http.get(`/votes/${id}/vote.json`).then(function(res){
+            callback(res.data)
+        }).catch( (error) => { console.log(error) })
     }
     return o
   }

@@ -5,9 +5,10 @@ angular.module('scApp')
     '$uibModal',
     'Auth',
     'groups_factory',
+    'votes_factory',
     'thisGroup',
     function($state, $scope, $uibModal, Auth,
-        groups_factory, thisGroup){
+        groups_factory, votes_factory, thisGroup){
 
       $scope.group = thisGroup.data.group
       $scope.members = thisGroup.data.members
@@ -18,9 +19,7 @@ angular.module('scApp')
 
       Auth.currentUser().then(function(user){
           $scope.currentUser = user
-          console.log($scope.currentUser)
       })
-
 
       function updateVoteGraphics(id){
           setTimeout(function(){
@@ -37,6 +36,10 @@ angular.module('scApp')
           }, 0)
       }
 
+      $scope.testHook = function(){
+          console.log($scope.group);
+      }
+
       $scope.$on('$viewContentLoaded', updateVoteGraphics)
 
       $scope.invite = function(){
@@ -51,7 +54,6 @@ angular.module('scApp')
                 $scope.selectedMember = $scope.members[i]
             }
         }
-
         $scope.votedChar = $scope.votes.filter(function(item){
             return item.votee_id == $scope.selectedMember.id &&
             item.voter_id == $scope.currentUser.id
@@ -73,7 +75,13 @@ angular.module('scApp')
                 return $scope.votedChar[0] ? $scope.votedChar[0].id : null
             }
           }
+      }).closed.then(function(){
+        votes_factory.get($scope.group.id, function(data){
+            $scope.votes = data.votes
         })
+        console.log("update yoooo");
+        updateVoteGraphics()
+      })
 
       }
     }
