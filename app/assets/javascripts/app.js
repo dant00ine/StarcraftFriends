@@ -27,9 +27,11 @@ angular.module('scApp', ['ui.router', 'templates', 'Devise', 'ui.bootstrap'])
         url: '/groups/:id',
         templateUrl: 'group/_groups.html',
         controller: 'GroupsCtrl',
-        onEnter: ['$state', 'Auth', function($state, Auth){
+        onEnter: ['$state', 'Auth', 'groups_factory', '$stateParams', function($state, Auth, groups_factory, $stateParams){
           Auth.currentUser().then(function(user){
-
+            //   var valid = groups_factory.valid(user.id, $stateParams.id)
+              if( !(groups_factory.valid(user.id, $stateParams.id)) )
+                $state.go('home')
           }, function(error){
             $state.go('login')
           })

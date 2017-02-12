@@ -4,10 +4,9 @@ class GroupsController < ApplicationController
   end
 
   def show
-      #TODO -- rewrite this method to split on templates
     @group = Group.find(params[:id])
-    @members = Group.first.users
-    @votes = Group.first.votes.joins(:character).select("*")
+    @members = @group.users
+    @votes = @group.votes.joins(:character).select("*")
     render json: {"group": @group, "members": @members, "votes": @votes}
     puts "******"
     puts Symbol.all_symbols

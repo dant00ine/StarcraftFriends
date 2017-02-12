@@ -21,7 +21,6 @@ angular.module('scApp')
 
       o.getOne = function(id){
         return $http.get(`/groups/${id}.json`).success(function(res){
-          // console.log(res);
           return res.data
         })
       }
