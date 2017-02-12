@@ -10,6 +10,14 @@ a{
     font-size: 1.5em;
 }
 
+.complete-true{
+    background-image:url("/images/backgrounds")
+}
+
+.complete-false{
+
+}
+
 .groupIndex {
   border: 1px solid #FFB000;
   border-radius: 10px;

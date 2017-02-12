@@ -17,8 +17,9 @@ angular.module('scApp')
             callback(res.data)
         }).catch( (error) => { console.log(error) })
     }
+    
     o.finalize = function(id, callback){
-        $http.post(`/votes/${id}/finalize.json`).then(function(res){
+        $http.get(`/votes/${id}/finalize.json`).then(function(res){
             callback(res.data)
         }).catch( (error) => { console.log(error) })
     }

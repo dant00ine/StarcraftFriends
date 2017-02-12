@@ -1,30 +1,4 @@
 <h3 class="page-header" ng-bind="group.name"></h3>
 <p ng-bind="group.description"></p>
 
-<table class="memberList table table-striped">
-  <tr ng-repeat="member in members">
-    <td>
-      <a ng-bind="member.name" href="#/profile/{{member.id}}"></a>
-      <button id="{{member.id}}" class="pull-right voteBtn" ng-click="vote(member.id)">Vote</button>
-      <span id="charNameFor{{member.id}}" class="pull-right" ng-bind="member.created_at"></span>
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <form ng-submit="invite()">
-          <span class="input-group">
-              <span class="input-group-btn">
-                  <button class="btn" type="submit">
-                      <span class="glyphicon glyphicon-plus-sign"></span>
-                  </button>
-              </span>
-              <input ng-model="email" class="form-control" type="text" placeholder="Invite by email">
-          </span>
-      </form>
-    </td>
-  </tr>
-</table>
-
-<p> <span class="textEmphasis">{{votes.length}} </span> out of
-    <span class="textEmphasis">{{members.length * members.length}} </span> votes have been submitted </p>
-<button class="btn btn-success">Finalize?</button>
+<ui-view></ui-view>

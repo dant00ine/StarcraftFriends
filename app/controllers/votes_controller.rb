@@ -19,7 +19,11 @@ class VotesController < ApplicationController
         render json: {vote: @vote}
     end
 
-
+    def finalize
+        @group  = Group.find(params[:id])
+        @group[:completed] = true
+        render json: {success: @group.save}
+    end
 
     def vote_params
       params.require(:vote).permit(:voter_id,

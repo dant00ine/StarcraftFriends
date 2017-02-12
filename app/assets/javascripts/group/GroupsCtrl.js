@@ -93,9 +93,13 @@ angular.module('scApp')
 
     } // $scope.vote
 
-    // $scope.finalize = function(){
-    //
-    // }
+    $scope.finalize = function(){
+        votes_factory.finalize($scope.group.id, function(data){
+            console.log(data);
+            // navigate to the completed version of the group
+            $state.go(`group.complete`, {id: $scope.group.id})
+        })
+    }
 
     } // end of controller definition function
   ])

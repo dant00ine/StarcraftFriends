@@ -1,0 +1,23 @@
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+    <div class="carousel-inner" role="listbox">
+
+        <div class="carousel-item active">
+          <img src="images/terran/marauder.jpg" alt="marauder">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 ng-bind="members[0]">...</h3>
+            <p ng-bind="members[0].description">...</p>
+          </div>
+        </div>
+
+        <div class="carousel-item" ng-repeat="member in members | filter:$index=0">
+          <img src="..." alt="...">
+          <div class="carousel-caption d-none d-md-block">
+            <h3 ng-bind>...</h3>
+            <p>...</p>
+          </div>
+        </div>
+
+    </div>
+
+</div>

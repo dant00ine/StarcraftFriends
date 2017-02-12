@@ -6,9 +6,13 @@
   New Group
 </button>
 <h3>Your groups:</h3>
+
 <div ng-repeat="group in groups">
-  <div class="groupIndex col-sm-2">
-    <a ng-bind="group.name" href="#/groups/{{group.id}}"></a>
-    <p ng-bind="group.description"></p>
-  </div>
+    <a style="display:block;" href="{{group.completed ? '#/groups/'+group.id+'/complete' : '#/groups/'+group.id+'/voting'}}">
+      <div class="groupIndex col-sm-2 complete-{{group.completed}}">
+        <p ng-bind="group.name"></p>
+        <p>{{JSON.stringify(group)}}</p>
+        <p ng-bind="group.description"></p>
+      </div>
+    </a>
 </div>
