@@ -1,8 +1,7 @@
 class VotesController < ApplicationController
 
     def show
-        @votes = Vote.where(group_id: params[:id])
-        puts @votes
+        @votes = @votes = Group.find(params[:id]).votes.joins(:character).select("*")
         render json: {votes: @votes}
     end
 

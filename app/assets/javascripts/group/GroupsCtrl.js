@@ -1,13 +1,13 @@
 angular.module('scApp')
   .controller('GroupsCtrl', [
     '$state',
-    '$scope',
+    '$scope', '$rootScope',
     '$uibModal',
     'Auth',
     'groups_factory',
     'votes_factory',
     'thisGroup',
-    function($state, $scope, $uibModal, Auth,
+    function($state, $scope, $rootScope, $uibModal, Auth,
         groups_factory, votes_factory, thisGroup){
 
       $scope.group = thisGroup.data.group
@@ -24,23 +24,34 @@ angular.module('scApp')
       function updateVoteGraphics(id){
           setTimeout(function(){
               for(i in $scope.votes){
-                  var character_id = $scope.votes[i].character_id
-                  var url = `/images/terran/${character_id}.jpg`
-                  var votee_id = $scope.votes[i].votee_id.toString()
-                  var button = document.getElementById(votee_id)
-                  button.style.backgroundImage = `url(${url})`
-                  button.style.backgroundSize = `cover`
-                  button.innerHTML = ""
+                  if($scope.currentUser.id == $scope.votes[i].voter_id){
+                      var character_id = $scope.votes[i].character_id
+                      var url = `/images/terran/${character_id}.jpg`
+                      var votee_id = $scope.votes[i].votee_id.toString()
+
+                      var button = document.getElementById(votee_id)
+                      var label = document.getElementById("charNameFor" + votee_id)
+
+                      label.innerHTML = $scope.votes[i].name
+
+                      button.style.backgroundImage = `url(${url})`
+                      button.style.backgroundSize = `cover`
+                      button.innerHTML = ""
+                  }
               }
               return true
           }, 0)
       }
 
-      $scope.testHook = function(){
-          console.log($scope.group);
-      }
-
       $scope.$on('$viewContentLoaded', updateVoteGraphics)
+
+      $rootScope.$on('vote_created', function(){
+          votes_factory.get($scope.group.id, function(data){
+              $scope.votes = data.votes
+              console.log("vote created event");
+              updateVoteGraphics()
+          })
+        })
 
       $scope.invite = function(){
         var invParams = {invite: {email: $scope.email}}
@@ -48,7 +59,7 @@ angular.module('scApp')
         $scope.email = ''
       }
 
-      $scope.vote = function(id){
+    $scope.vote = function(id){
         for(var i = 0; i < $scope.members.length; i++){
             if($scope.members[i].id == id){
                 $scope.selectedMember = $scope.members[i]
@@ -75,14 +86,16 @@ angular.module('scApp')
                 return $scope.votedChar[0] ? $scope.votedChar[0].id : null
             }
           }
-      }).closed.then(function(){
-        votes_factory.get($scope.group.id, function(data){
-            $scope.votes = data.votes
-        })
-        console.log("update yoooo");
-        updateVoteGraphics()
       })
+            //   .closed.then(function(){
+            //      handler for modal close
+            //   })
 
-      }
-    }
+    } // $scope.vote
+
+    // $scope.finalize = function(){
+    //
+    // }
+
+    } // end of controller definition function
   ])

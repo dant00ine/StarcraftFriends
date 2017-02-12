@@ -13,6 +13,12 @@ angular.module('scApp')
 
     o.get = function(id, callback){
         $http.get(`/votes/${id}/vote.json`).then(function(res){
+            console.log(res);
+            callback(res.data)
+        }).catch( (error) => { console.log(error) })
+    }
+    o.finalize = function(id, callback){
+        $http.post(`/votes/${id}/finalize.json`).then(function(res){
             callback(res.data)
         }).catch( (error) => { console.log(error) })
     }

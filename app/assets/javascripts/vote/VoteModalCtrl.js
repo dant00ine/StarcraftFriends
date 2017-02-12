@@ -1,11 +1,11 @@
 angular.module('scApp')
   .controller('VoteModalCtrl', [
-    '$scope',
+    '$scope', '$rootScope',
     '$uibModalInstance',
     'Auth',
     'votes_factory',
     'group', 'member', 'characterId',
-    function($scope, $uibModalInstance, Auth,
+    function($scope, $rootScope, $uibModalInstance, Auth,
         votes_factory, group, member, characterId){
 
       $scope.selected = ""
@@ -42,7 +42,8 @@ angular.module('scApp')
         }
 
         var res = votes_factory.create(voteData, function(response){
-            console.log("callback yoooooo");
+            console.log('time to emit');
+            $rootScope.$broadcast('vote_created')
         })
 
         $scope.group = "test"

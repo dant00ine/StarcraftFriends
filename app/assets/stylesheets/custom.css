@@ -6,6 +6,10 @@ a{
   color: #FFB000;
 }
 
+.textEmphasis{
+    font-size: 1.5em;
+}
+
 .groupIndex {
   border: 1px solid #FFB000;
   border-radius: 10px;
