@@ -46,6 +46,10 @@ class GroupsController < ApplicationController
   def destroy
   end
 
+  def results
+      @members = Member.joins(:user).select("*").where(group_id: params[:id])
+  end
+
   def valid
     render json: User.find(params[:user_id]).groups_joined.exists?(id: params[:group_id]) || User.find(params[:user_id]).groups.exists?(id: params[:group_id])
   end

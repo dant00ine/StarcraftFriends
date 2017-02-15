@@ -50,7 +50,8 @@ angular.module('scApp', ['ui.router', 'templates', 'Devise', 'ui.bootstrap'])
         })
         .state('group.complete', {
             url: '/complete',
-            templateUrl: 'group/_completeGroup.html'
+            templateUrl: 'group/_completeGroup.html',
+            controller: 'CompleteGroupCtrl'
 
         })
 

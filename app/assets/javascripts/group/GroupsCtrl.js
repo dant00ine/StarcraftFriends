@@ -10,6 +10,8 @@ angular.module('scApp')
     function($state, $scope, $rootScope, $uibModal, Auth,
         groups_factory, votes_factory, thisGroup){
 
+            console.log(thisGroup);
+
       $scope.group = thisGroup.data.group
       $scope.members = thisGroup.data.members
       $scope.votes = thisGroup.data.votes
@@ -44,9 +46,8 @@ angular.module('scApp')
       }
 
       if(!$scope.group.completed){
-          
+          $scope.$on('$viewContentLoaded', updateVoteGraphics)
       }
-      $scope.$on('$viewContentLoaded', updateVoteGraphics)
 
       $rootScope.$on('vote_created', function(){
           votes_factory.get($scope.group.id, function(data){

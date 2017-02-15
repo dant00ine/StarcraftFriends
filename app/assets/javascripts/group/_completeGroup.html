@@ -1,23 +1,11 @@
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 
-    <div class="carousel-inner" role="listbox">
 
-        <div class="carousel-item active">
-          <img src="images/terran/marauder.jpg" alt="marauder">
-          <div class="carousel-caption d-none d-md-block">
-            <h3 ng-bind="members[0]">...</h3>
-            <p ng-bind="members[0].description">...</p>
-          </div>
-        </div>
+<button ng-click="heya()">heya</button>
 
-        <div class="carousel-item" ng-repeat="member in members | filter:$index=0">
+<p ng-bind="members"></p>
 
-          <div class="carousel-caption d-none d-md-block">
-            <h3 ng-bind="member.name"></h3>
-            <p>Group member</p>
-          </div>
-        </div>
-
+<div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
+    <div uib-slide ng-repeat="member in members">
+        <p ng-bind="member.name"></p>
     </div>
-
 </div>
