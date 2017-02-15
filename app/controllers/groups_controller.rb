@@ -8,8 +8,6 @@ class GroupsController < ApplicationController
     @members = @group.users
     @votes = @group.votes.joins(:character).select("*")
     render json: {"group": @group, "members": @members, "votes": @votes}
-    puts "******"
-    puts Symbol.all_symbols
   end
 
   def new
@@ -46,6 +44,10 @@ class GroupsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def valid
+    render json: User.find(params[:user_id]).groups_joined.exists?(id: params[:group_id]) || User.find(params[:user_id]).groups.exists?(id: params[:group_id])
   end
 
   private

@@ -11,10 +11,10 @@
         </div>
 
         <div class="carousel-item" ng-repeat="member in members | filter:$index=0">
-          <img src="..." alt="...">
+
           <div class="carousel-caption d-none d-md-block">
-            <h3 ng-bind>...</h3>
-            <p>...</p>
+            <h3 ng-bind="member.name"></h3>
+            <p>Group member</p>
           </div>
         </div>
 

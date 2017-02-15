@@ -43,6 +43,9 @@ angular.module('scApp')
           }, 0)
       }
 
+      if(!$scope.group.completed){
+          
+      }
       $scope.$on('$viewContentLoaded', updateVoteGraphics)
 
       $rootScope.$on('vote_created', function(){

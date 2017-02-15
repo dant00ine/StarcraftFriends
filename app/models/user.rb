@@ -7,5 +7,6 @@ class User < ApplicationRecord
   has_many :votes
   has_many :friends, through: :friends
   has_many :friendships, foreign_key: "user_id", class_name: "Friend"
-  has_many :groups, through: :members
+  has_many :members
+  has_many :groups_joined, through: :members, source: :group
 end

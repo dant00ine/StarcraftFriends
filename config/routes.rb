@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 
   # custom groups routes
   post 'groups/:id/invite.json', to: 'groups#invite'
-  get 'groups/:id', to: 'groups#show'
+  get 'groups/:id.json', to: 'groups#show'
+  get 'groups/:user_id/:group_id.json', to: 'groups#valid'
 
   # custom votes routes
   post '/votes/:id/vote.json', to: 'votes#create'

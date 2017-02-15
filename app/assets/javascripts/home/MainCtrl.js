@@ -10,8 +10,6 @@ angular.module('scApp')
         $scope.user = user
       })
 
-      console.log(groups_factory);
-
       $scope.groups = groups_factory.groups
 
       $scope.openModal = function(){

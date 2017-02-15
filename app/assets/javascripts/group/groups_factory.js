@@ -8,7 +8,6 @@ angular.module('scApp')
 
       o.getAll = function(){
         return $http.get('/groups.json').success(function(data){
-          // console.log(data);
           angular.copy(data, o.groups)
         })
       }
@@ -30,6 +29,12 @@ angular.module('scApp')
           o.groups.push(res.data)
           return res.data
         })
+      }
+
+      o.valid = function(user_id, group_id, callback){
+          $http.get(`/groups/${user_id}/${group_id}.json`).success(function(res){
+              callback(res)
+          })
       }
 
       return o
