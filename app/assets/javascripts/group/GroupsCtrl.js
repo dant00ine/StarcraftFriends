@@ -10,14 +10,14 @@ angular.module('scApp')
     function($state, $scope, $rootScope, $uibModal, Auth,
         groups_factory, votes_factory, thisGroup){
 
-            console.log(thisGroup);
-
       $scope.group = thisGroup.data.group
       $scope.members = thisGroup.data.members
       $scope.votes = thisGroup.data.votes
       $scope.currentUser
       $scope.selectedMember
       $scope.votedChar
+
+      console.log($scope.votes);
 
       Auth.currentUser().then(function(user){
           $scope.currentUser = user
@@ -27,8 +27,7 @@ angular.module('scApp')
           setTimeout(function(){
               for(i in $scope.votes){
                   if($scope.currentUser.id == $scope.votes[i].voter_id){
-                      var character_id = $scope.votes[i].character_id
-                      var url = `/images/terran/${character_id}.jpg`
+                      var sprite_url = $scope.votes[i].sprite_url
                       var votee_id = $scope.votes[i].votee_id.toString()
 
                       var button = document.getElementById(votee_id)
@@ -36,7 +35,7 @@ angular.module('scApp')
 
                       label.innerHTML = $scope.votes[i].name
 
-                      button.style.backgroundImage = `url(${url})`
+                      button.style.backgroundImage = `url(${sprite_url})`
                       button.style.backgroundSize = `cover`
                       button.innerHTML = ""
                   }

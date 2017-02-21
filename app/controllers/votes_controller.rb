@@ -10,6 +10,8 @@ class VotesController < ApplicationController
         @vote = Vote.where(voter_id: vote_params[:voter_id],
                         votee_id: vote_params[:votee_id],
                         group_id: vote_params[:group_id]).first
+        @character = Character.where(name: vote_params[:character_id])
+
         if @vote
         #   @vote = Vote.update(@vote.id, character_id: vote_params[:character_id])
             @vote.update(character_id: vote_params[:character_id])
@@ -29,6 +31,6 @@ class VotesController < ApplicationController
       params.require(:vote).permit(:voter_id,
                                 :votee_id,
                                 :group_id,
-                                :character_id)
+                                :character)
     end
 end

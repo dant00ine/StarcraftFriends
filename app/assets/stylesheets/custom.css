@@ -2,6 +2,10 @@
   color: white;
 }
 
+button {
+    border: none;
+}
+
 a{
   color: #FFB000;
 }
@@ -63,6 +67,33 @@ body{
 .modal-body img:hover{
   outline: 1px inset #FFB000;
 }
+
+    .armyButtonRow{
+        width: 80%;
+        margin: auto;
+    }
+        .armyButtons{
+            display: inline-block;
+            padding: 0px 25px 0px 25px;
+            margin-bottom: 25px;
+        }
+
+        .armyButtons button {
+            height: 50px; width: 50px;
+            /*border: 0px;*/
+            background-size: 50px;
+            background-repeat: none;
+        }
+            #zergButton{
+                background-image: url("/images/icons/Zerg_Icon.jpg");
+            }
+            #terranButton{
+                background-image: url("/images/icons/Terran_Icon.jpg");
+            }
+            #protossButton{
+                background-image: url("/images/icons/Protoss_Icon.jpg");
+            }
+
   .selected{
     border: 5px inset #FFB000;
   }

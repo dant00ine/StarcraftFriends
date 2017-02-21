@@ -37,6 +37,12 @@ angular.module('scApp')
           })
       }
 
+      o.results = function(group_id, callback){
+          $http.get(`/groups/${group_id}/results.json`).success(function(res){
+              callback(res)
+          })
+      }
+
       return o
     }
   ])

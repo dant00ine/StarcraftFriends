@@ -1,20 +1,16 @@
 angular.module('scApp')
     .controller('CompleteGroupCtrl', [
-        '$state', '$scope',
-        function($state, $scope){
-            $scope.heya = function(){
-                console.log("heya");
-            }
-            console.log($scope.members);
-            console.log($scope.votes);
+        '$state', '$scope', 'groups_factory',
+        function($state, $scope, groups_factory){
 
             $scope.membersResults = $scope.members
 
+            getResults()
 
-            function determineCharacters(){
-                for(member in $scope.membersResults){
-
-                }
+            function getResults(){
+                groups_factory.results($scope.group.id, function(res){
+                    console.log(res);
+                })
             }
         }
     ])

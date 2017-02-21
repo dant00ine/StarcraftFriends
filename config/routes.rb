@@ -2,12 +2,13 @@ Rails.application.routes.draw do
   root to: 'application#angular'
 
   # custom users routes
-  get 'users/:id.json', to: 'users#show'
+  get '/users/:id.json', to: 'users#show'
 
   # custom groups routes
-  post 'groups/:id/invite.json', to: 'groups#invite'
-  get 'groups/:id.json', to: 'groups#show'
-  get 'groups/:user_id/:group_id.json', to: 'groups#valid'
+  post '/groups/:id/invite.json', to: 'groups#invite'
+  get '/groups/:id.json', to: 'groups#show'
+  get '/groups/:group_id/results.json', to: 'groups#results'
+  get '/groups/:user_id/:group_id.json', to: 'groups#valid'
 
   # custom votes routes
   post '/votes/:id/vote.json', to: 'votes#create'

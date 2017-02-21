@@ -5,23 +5,42 @@
     <h4 class="modal-title">Vote</h4>
   </div>
     <div class="modal-body">
-      <div class="row">
-        <div class="col-sm-3" ng-click="select(1)">
-          <img id="char1" src="images/terran/1.jpg" alt="banshee">
+
+        <div class="row armyButtonRow">
+            <div class="armyButtons">
+                <button id="zergButton" ng-click="selectCategory('zerg')"></button>
+            </div>
+            <div class="armyButtons">
+                <button id="terranButton" ng-click="selectCategory('terran')" class="selected"></button>
+            </div>
+            <div class="armyButtons">
+                <button id="protossButton" ng-click="selectCategory('protoss')"></button>
+            </div>
+
         </div>
 
-        <div class="col-sm-3" ng-click="select(2)">
-          <img id="char2" src="images/terran/2.jpg" alt="battlecruiser">
+        <div ng-if="terran">
+            <div class="row">
+              <div class="col-sm-3" ng-click="select('banshee')">
+                <img id="banshee" src="images/terran/Banshee.jpg" alt="banshee">
+              </div>
+
+              <div class="col-sm-3" ng-click="select('battlecruiser')">
+                <img id="battlecruiser" src="images/terran/Battlecruiser.jpg" alt="battlecruiser">
+              </div>
+
+              <div class="col-sm-3" ng-click="select('ghost')">
+                <img id="ghost" src="images/terran/Ghost.jpg" alt="ghost">
+              </div>
+
+              <div class="col-sm-3" ng-click="select('hellion')">
+                <img id="hellion" src="images/terran/Hellion.jpg" alt="hellion">
+              </div>
+            </div>
         </div>
 
-        <div class="col-sm-3" ng-click="select(3)">
-          <img id="char3" src="images/terran/3.jpg" alt="ghost">
-        </div>
 
-        <div class="col-sm-3" ng-click="select(4)">
-          <img id="char4" src="images/terran/4.jpg" alt="hellion">
-        </div>
-      </div>
+
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-default" ng-click="closeModal()">Close</button>

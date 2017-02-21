@@ -9,8 +9,13 @@ angular.module('scApp')
         votes_factory, group, member, characterId){
 
       $scope.selected = ""
+      $scope.selectedCategory = "terran"
       $scope.group = group
       $scope.member = member
+
+      $scope.zerg = false
+      $scope.protoss = false
+      $scope.terran = true
 
       Auth.currentUser().then(function(user){
         $scope.user = user
@@ -18,11 +23,21 @@ angular.module('scApp')
 
       $scope.select = function(selection){
           setTimeout(function(){
-              var oldElement = document.getElementById("char" + $scope.selected)
+              var oldElement = document.getElementById($scope.selected)
               angular.element(oldElement).attr("class", "")
               $scope.selected = selection
-              var charId = "char"+selection
-              var element = document.getElementById(charId)
+              var element = document.getElementById(selection)
+              angular.element(element).attr("class", "selected")
+          }, 0)
+      }
+
+      $scope.selectCategory = function(selection){
+          setTimeout(function(){
+              var oldSelection = document.getElementById($scope.selectedCategory + "Button")
+              angular.element(oldSelection).attr("class", "")
+              $scope.selectedCategory = selection
+              var buttonId = selection+"Button"
+              var element = document.getElementById(buttonId)
               angular.element(element).attr("class", "selected")
           }, 0)
       }
@@ -37,7 +52,7 @@ angular.module('scApp')
             voter_id: $scope.user.id,
             votee_id: $scope.member.id,
             group_id: $scope.group.id,
-            character_id: $scope.selected
+            character: $scope.selected
           }
         }
 
