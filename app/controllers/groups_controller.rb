@@ -50,13 +50,16 @@ class GroupsController < ApplicationController
       @results = Hash.new
       @members = Member.joins(:user).select("users.name, users.id").where(group_id: params[:group_id])
 
-      i = 0
       for member in @members do
-        @results[i] = Hash.new
-        @results[i][:name] = member.name
-        @results[i][:vote_info] = (Vote.joins(:character).select("*").where(group_id: params[:group_id], votee_id: member.id))
-        i+=1
+        @results[member.name] = Hash.new
+        @results[member.name][:name] = member.name
+        @results[member.name][:vote_info] = (Vote.joins(:character).select("*").where(group_id: params[:group_id], votee_id: member.id))
+
+        @topVotes = Vote.group(:character_id).where(votee_id: member.id, group_id: params[:group_id]).count(:character_id)
+        puts "TOP VOTES ***** TOP VOTES"
+        puts @topVotes
       end
+
     render json: @results
   end
 

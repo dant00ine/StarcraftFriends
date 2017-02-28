@@ -4,13 +4,16 @@ angular.module('scApp')
         function($state, $scope, groups_factory){
 
             $scope.membersResults = $scope.members
+            getResults() // to set $scope.results
 
-            getResults()
 
             function getResults(){
                 groups_factory.results($scope.group.id, function(res){
                     console.log(res);
+                    $scope.results = res
                 })
             }
+
+
         }
     ])
