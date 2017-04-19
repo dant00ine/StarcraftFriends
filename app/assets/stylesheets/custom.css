@@ -1,3 +1,12 @@
+@font-face{
+    font-family: "Starcraft";
+    src: url("/assets/fonts/starcraft.ttf") format("truetype");
+}
+
+.starcraft-font {
+    font-family: "Starcraft"
+}
+
 *{
   color: white;
 }

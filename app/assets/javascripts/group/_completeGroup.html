@@ -2,6 +2,10 @@
 <div uib-carousel active="active" interval="myInterval" no-wrap="noWrapSlides">
     <div uib-slide ng-repeat="person in results">
         <img src="" alt="">
-        <p ng-bind="member.name"></p>
+        <p ng-bind="person.name"></p>
     </div>
+</div>
+
+<div ng-repeat="person in results">
+    <p>{{person.name}}</p>
 </div>
